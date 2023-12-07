@@ -31,7 +31,6 @@ const Upload: NextPage = () => {
         <Input
           required
           label="Price"
-          placeholder="0.00"
           name="price"
           type="text"
           kind="price"
