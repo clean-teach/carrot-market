@@ -44,7 +44,7 @@ async function handler(
   const isLiked = Boolean(
     await client.fav.findFirst({
       where: {
-        productId: +id.toString(),
+        productId: product?.id,
         userId: user?.id,
       },
       select: {
