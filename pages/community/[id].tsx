@@ -75,8 +75,9 @@ const CommunityPostDetail: NextPage = () => {
   useEffect(() => {
     if (answerData && answerData.ok) {
       reset();
+      mutate();
     }
-  }, [answerData, reset])
+  }, [answerData, reset, mutate])
 
   return (
     <Layout canGoBack>
@@ -145,11 +146,11 @@ const CommunityPostDetail: NextPage = () => {
               <div className="w-8 h-8 bg-slate-200 rounded-full" />
               <div>
                 <span className="text-sm block font-medium text-gray-700">
-                  Steve Jebs
+                  {answer.user.name}
                 </span>
-                <span className="text-xs text-gray-500 block ">2시간 전</span>
+                <span className="text-xs text-gray-500 block ">{answer.createdAt}</span>
                 <p className="text-gray-700 mt-2">
-                  The best mandu restaurant is the one next to my house.
+                  {answer.answer}
                 </p>
               </div>
             </div>
@@ -162,6 +163,7 @@ const CommunityPostDetail: NextPage = () => {
               name="description"
               placeholder="Answer this question!"
               required
+              minLength="5"
             />
             <button className="mt-2 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none ">
               {answerLoading ? 'Loading...' : 'Reply'}
