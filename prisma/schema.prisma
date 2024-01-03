@@ -27,9 +27,6 @@ model User {
   wonderings Wondering[]
   writtenReviews  Review[]    @relation(name: "writtenReviews")
   receivedReviews Review[]    @relation(name: "receivedReviews")
-  fav             Fav[]
-  sales           Sale[]
-  purchases       Purchase[]
   record          Record[]
 }
 
@@ -52,9 +49,6 @@ model Product {
   name        String
   price       Int
   description String   @db.MediumText
-  favs Fav[]
-  sales       Sale[]
-  purchases   Purchase[]
   records     Record[]
 }
 
@@ -104,36 +98,6 @@ model Review {
   score        Int      @default(1)
 }
 
-model Fav {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Sale {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Purchase {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Record {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -146,7 +110,7 @@ model Record {
 }
 
 enum Kind {
-  Purchase
-  Sale
-  Fav
+  purchase
+  sale
+  fav
 }
