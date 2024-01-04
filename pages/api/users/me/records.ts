@@ -12,19 +12,40 @@ async function handler(
     session: { user },
     query: { kind },
   } = req;
-  const records = await client.record.findMany({
-    where: {
-      userId: user?.id,
-      kind: kind as Kind,
-    },
-    include: {
-      product: true,
-    },
-  });
-  res.json({
-    ok: true,
-    records,
-  });
+  if (kind) {
+    const records = await client.record.findMany({
+      where: {
+        userId: user?.id,
+        kind: kind as Kind,
+      },
+      include: {
+        product: {
+          select: {
+            records: {
+              where: {
+                kind: kind as Kind,
+              },
+            },
+          },
+          // include: {
+          //   _count: {
+          //     select: {
+          //       records: true,
+          //     },
+          //   },
+          // },
+        },
+      },
+    });
+    res.json({
+      ok: true,
+      records,
+    });
+  } else {
+    res.json({
+      ok: false,
+    });
+  }
 }
 
 export default withApiSession(
