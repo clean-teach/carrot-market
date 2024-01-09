@@ -40,7 +40,7 @@ const Create: NextPage = () => {
       <form onSubmit={handleSubmit(onValid)} className=" space-y-4 py-10 px-4">
         <Input register={register('name', { required: true })} required label="Name" name="name" type="text" />
         <Input
-          register={register('price', { required: true })}
+          register={register('price', { required: true, valueAsNumber: true })}
           required
           label="Price"
           placeholder="0.00"
