@@ -3,12 +3,12 @@ import Link from 'next/link';
 import FloatingButton from '@components/floating-button';
 import Layout from '@components/layout';
 
-const Live: NextPage = () => {
+const Streams: NextPage = () => {
   return (
     <Layout hasTabBar title="라이브">
       <div className=" divide-y-[1px] space-y-4">
         {[1, 1, 1, 1, 1, 1, 1].map((_, i) => (
-          <Link key={i} href={`/live/${i}`}>
+          <Link key={i} href={`/streams/${i}`}>
             <a className="pt-4 block  px-4">
               <div className="w-full rounded-md shadow-sm bg-slate-300 aspect-video" />
               <h1 className="text-2xl mt-2 font-bold text-gray-900">
@@ -17,7 +17,7 @@ const Live: NextPage = () => {
             </a>
           </Link>
         ))}
-        <FloatingButton href="/live/create">
+        <FloatingButton href="/streams/create">
           <svg
             className="w-6 h-6"
             fill="none"
@@ -38,4 +38,4 @@ const Live: NextPage = () => {
   );
 };
 
-export default Live;
+export default Streams;
