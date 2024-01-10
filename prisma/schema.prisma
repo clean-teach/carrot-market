@@ -162,7 +162,7 @@ model Stream {
   description String    @db.MediumText
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
-  Message     Message[]
+  messages    Message[]
 }
 
 model Message {
