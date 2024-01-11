@@ -34,12 +34,28 @@ const EditProfile: NextPage = () => {
       clearErrors('formErrors');
     }
   };
-  const onValid = ({ email, phone, name, avatar }: EditProfileForm) => {
+  const onValid = async ({ email, phone, name, avatar }: EditProfileForm) => {
     if (loading) return;
     if (email == '' && phone == '' && name == '') {
       return setError('formErrors', { message: 'Email or Phone number are required. You need to Choose one.' })
     }
-    editProfile({ email, phone, name });
+    if (avatar && avatar.length > 0) {
+      const cloudflareRequest = await (await fetch(`/api/files`)).json();
+
+      console.log(cloudflareRequest);
+
+      // upload file to CF URL
+
+      return;
+      editProfile({
+        email,
+        phone,
+        name,
+        // avatarUrl: CF URL
+      });
+    } else {
+      editProfile({ email, phone, name });
+    }
   }
 
   useEffect(() => {
