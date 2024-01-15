@@ -69,7 +69,7 @@ const EditProfile: NextPage = () => {
     if (user?.name) { setValue('name', user.name) }
     if (user?.email) { setValue('email', user.email) }
     if (user?.phone) { setValue('phone', user.phone) }
-    if (user?.avatar) { setAvatarPreview(`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${user?.avatar}/public`) }
+    if (user?.avatar) { setAvatarPreview(`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${user?.avatar}/avatar`) }
   }, [user, setValue])
 
   useEffect(() => {
