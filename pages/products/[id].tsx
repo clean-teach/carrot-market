@@ -8,6 +8,7 @@ import { Product, User } from '@prisma/client';
 import useMutation from '@libs/client/useMutation';
 import { cls } from '@libs/client/utils';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 interface ProductWithUser extends Product {
   user: User;
@@ -39,20 +40,21 @@ const ItemDetail: NextPage = () => {
     <Layout canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          <div className="relative  pb-80">
-            <Image
+          <div className="relative pb-80">
+            {data?.product.image ? <Image
               src={`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${data?.product.image}/public`}
               className="bg-slate-300 object-cover"
               layout="fill"
-            />
+            /> : <div className="bg-slate-300 object-cover" />
+            }
           </div>
           <div className="flex cursor-pointer py-3 border-t border-b items-center space-x-3">
-            <Image
+            {data?.product?.user?.avatar ? <Image
               width={48}
               height={48}
               src={`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${data?.product?.user?.avatar}/avatar`}
               className="w-12 h-12 rounded-full bg-slate-300"
-            />
+            /> : <div className="w-12 h-12 rounded-full bg-slate-300" />}
             <div>
               <p className="text-sm font-medium text-gray-700">{data?.product?.user?.name}</p>
               <Link href={`/users/profiles/${data?.product?.user?.id}`}>
@@ -93,7 +95,7 @@ const ItemDetail: NextPage = () => {
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Similar items</h2>
           <div className=" mt-6 grid grid-cols-2 gap-4">
-            {data?.relatedProducts.map((product) => (
+            {/* {data?.relatedProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`}>
                 <a>
                   <div className="h-56 w-full mb-4 bg-slate-300" />
@@ -101,7 +103,7 @@ const ItemDetail: NextPage = () => {
                   <span className="text-sm font-medium text-gray-900">$ {product.price}</span>
                 </a>
               </Link>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
