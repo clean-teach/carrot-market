@@ -5,6 +5,7 @@ import Layout from '@components/layout';
 import Head from 'next/head';
 import useSWR from 'swr';
 import { Product } from '@prisma/client';
+import client from "@libs/server/client";
 
 export interface ProductWithCount extends Product {
   _count: {
@@ -17,8 +18,8 @@ interface ProductsResponse {
   products: ProductWithCount[];
 }
 
-const Home: NextPage = () => {
-  const { data } = useSWR<ProductsResponse>('/api/products');
+const Home: NextPage<{ products: ProductWithCount[] }> = ({ products }) => {
+  // const { data } = useSWR<ProductsResponse>('/api/products');
 
   return (
     <Layout title="홈" hasTabBar>
@@ -26,7 +27,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <div className="flex flex-col space-y-5 divide-y">
-        {data?.products.map((product) => (
+        {products.map((product) => (
           <Item
             id={product.id}
             key={product.id}
@@ -56,5 +57,14 @@ const Home: NextPage = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps() {
+  const products = await client.product.findMany({});
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products)),
+    },
+  };
+}
 
 export default Home;

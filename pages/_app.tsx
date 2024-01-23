@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="w-full max-w-xl mx-auto">
         <Component {...pageProps} />
       </div>
-      <Script
+      {/* <Script
         src="https://developers.kakao.com/sdk/js/kakao.js"
         strategy="lazyOnload"
       />
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             });
           };
         }}
-      />
+      /> */}
     </SWRConfig>
   );
 }
