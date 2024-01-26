@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const client = new PrismaClient();
 
 async function main() {
-    // Array.from({length:500}, (v,i)=>i)
+  // Array.from({length:500}, (v,i)=>i)
   [...Array.from(Array(500).keys())].forEach(async (item) => {
     await client.stream.create({
       data: {
@@ -15,6 +15,9 @@ async function main() {
             id: 1,
           },
         },
+        cloudflareId: '',
+        cloudflareUrl: '',
+        cloudflareKey: '',
       },
     });
     console.log(`${item}/500`);
