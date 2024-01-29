@@ -18,9 +18,12 @@
     "react": "^18.0.0-rc.0",
     "react-dom": "^18.0.0-rc.0",
     "react-hook-form": "^7.25.0",
+    "remark-html": "^16.0.1",
+    "remark-parse": "^11.0.0",
     "swr": "^2.2.4",
     "ts-node": "^10.9.2",
-    "twilio": "^4.19.3"
+    "twilio": "^4.19.3",
+    "unified": "^11.0.4"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.4.0",
