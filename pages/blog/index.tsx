@@ -34,7 +34,6 @@ const Blog: NextPage<{ posts: Post[] }> = ({ posts }) => {
 }
 
 export async function getStaticProps() {
-    // export async function getServerSideProps() {
     const blogPosts = readdirSync('./posts').map(file => {
         const content = readFileSync(`./posts/${file}`, 'utf-8');
         const [slug, _] = file.split('.');
@@ -42,7 +41,7 @@ export async function getStaticProps() {
     });
     return {
         props: {
-            blogPosts
+            posts: blogPosts.reverse()
         }
     }
 }
