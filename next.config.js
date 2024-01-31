@@ -4,4 +4,7 @@ module.exports = {
   images: {
     domains: ['imagedelivery.net', 'videodelivery.net'],
   },
+  experimental: {
+    reactRoot: true,
+  },
 };
