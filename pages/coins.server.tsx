@@ -1,19 +1,27 @@
 import { Suspense } from "react";
 
-let finished = false;
+const cache: any = {};
+function fetchData(url: string) {
+    if (!cache[url]) {
+        throw fetch(url)
+            .then((r) => r.json())
+            .then((json) => (cache[url] = json.slice(0, 50)));
+    }
+    return cache[url];
+}
 
 function List() {
-    if (!finished) {
-        throw Promise.all([
-            new Promise(resolve => setTimeout(resolve, 15000)),
-            new Promise((resolve: any) => {
-                finished = true;
-                resolve('');
-            })
-        ]);
-    }
-
-    return <ul>xxxxx</ul>;
+    const coins = fetchData("https://api.coinpaprika.com/v1/coins");
+    console.log(coins);
+    return (
+        <ul>
+            {coins.map((coin: any) => (
+                <li key={coin.id}>
+                    {coin.name} / {coin.symbol}
+                </li>
+            ))}
+        </ul>
+    );
 }
 
 export default function Coins() {
