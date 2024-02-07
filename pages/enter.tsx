@@ -15,7 +15,7 @@ const Bs = dynamic(
     new Promise((resolve) =>
       setTimeout(() => resolve(import("@components/bs")), 10000)
     ),
-  { ssr: false, suspense: true, loading: () => <span>loading</span> }
+  { ssr: false, loading: () => <span>loading</span> }
 );
 
 interface EnterForm {
