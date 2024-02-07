@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import FloatingButton from '@components/floating-button';
 import Layout from '@components/layout';
@@ -100,7 +100,7 @@ const Community: NextPage<PostsResponse> = ({ posts }) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   console.log("BUILDING COMM. STATICALLY");
   const posts = await client.post.findMany({ include: { user: true } });
   return {

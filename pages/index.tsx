@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import FloatingButton from '@components/floating-button';
 import Item from '@components/item';
 import Layout from '@components/layout';
@@ -73,7 +73,7 @@ const Page: NextPage<{ products: ProductWithCount[] }> = ({ products }) => {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const products = await client.product.findMany({});
   return {
     props: {
