@@ -50,6 +50,7 @@ async function handler(
     //   });
     //   console.log(email);
     // }
+    //-------------------------------------------------------
   } else if (email) {
     // const mailOptions = {
     //   from: process.env.MAIL_ID,
@@ -71,9 +72,11 @@ async function handler(
     // );
     // smtpTransport.close();
     // console.log('email result : ', result);
+    //-------------------------------------------------------
   }
   return res.json({
     ok: true,
+    token, // 메일과 문자 발송 API는 유료 서비스인 관계로 토큰을 직접 화면에 노출
   });
 }
 

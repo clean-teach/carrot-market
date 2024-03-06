@@ -6,17 +6,17 @@ import Input from '@components/input';
 import useMutation from '../libs/client/useMutation';
 import { cls } from '../libs/client/utils';
 import { useRouter } from 'next/router';
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 // import Bs from "@components/bs";
 
-const Bs = dynamic(
-  //@ts-ignore
-  () =>
-    new Promise((resolve) =>
-      setTimeout(() => resolve(import("@components/bs")), 10000)
-    ),
-  { ssr: false, loading: () => <span>loading</span> }
-);
+// const Bs = dynamic(
+//   //@ts-ignore
+//   () =>
+//     new Promise((resolve) =>
+//       setTimeout(() => resolve(import("@components/bs")), 10000)
+//     ),
+//   { ssr: false, loading: () => <span>loading</span> }
+// );
 
 interface EnterForm {
   email?: string;
@@ -51,6 +51,7 @@ const Enter: NextPage = () => {
   const onValid = (validForm: EnterForm) => {
     if (loading) return;
     enter(validForm);
+    console.log('token : ', data)
   };
   const onTokenValid = (validForm: TokenForm) => {
     if (tokenLoading) return;
@@ -130,9 +131,9 @@ const Enter: NextPage = () => {
               ) : null}
               {method === 'phone' ? (
                 <>
-                  <Suspense fallback={<button>loading!!</button>}>
+                  {/* <Suspense fallback={<button>loading!!</button>}>
                     <Bs />
-                  </Suspense>
+                  </Suspense> */}
                   <Input
                     register={register("phone")}
                     name="phone"
