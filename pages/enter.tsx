@@ -51,7 +51,6 @@ const Enter: NextPage = () => {
   const onValid = (validForm: EnterForm) => {
     if (loading) return;
     enter(validForm);
-    console.log('token : ', data)
   };
   const onTokenValid = (validForm: TokenForm) => {
     if (tokenLoading) return;
@@ -64,6 +63,10 @@ const Enter: NextPage = () => {
       router.push('/');
     }
   }, [tokenData, router]);
+
+  useEffect(() => {
+    console.log('token : ', data)
+  }, [data])
 
   return (
     <div className="mt-16 px-4">

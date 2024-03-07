@@ -39,5 +39,18 @@
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "mailgun_nodetut": {
+    "name": "mailgun-node-tutorial",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "4",
+      "jade": "*",
+      "mailgun-js": "0.5"
+    }
   }
 }
